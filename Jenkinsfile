@@ -17,9 +17,9 @@ pipeline{
             }
             stage('push to hub'){
                 steps{
-                    withCredentials([string(credentialsId: 'Dockerhub', variable: 'Dockerhubpwd')]) {
-                   bat "docker login -u purnimakalisetty -p ${Dockerhubpwd}" 
-                   bat 'docker push purnimakalisetty/test_php:tagname'
+                    withCredentials([string(credentialsId: 'Dockerhub', variable: 'Dockerhubpwd1')]) {
+                   bat "docker login -u purnimakalisetty -p ${Dockerhubpwd1}" 
+                   bat 'docker push sampletest'
                 }
             }
         }
