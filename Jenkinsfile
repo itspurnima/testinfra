@@ -15,5 +15,13 @@ pipeline{
                 bat 'docker build -t sampletest .'
             }
             }
+            stage('push to hub'){
+                steps{
+                    withCredentials([string(credentialsId: 'Dockerhub', variable: 'Dockerhubpwd')]) {
+                   bat "docker login -u purnimakalisetty -p ${Dockerhubpwd}" 
+                   bat 'docker push testapp'
+                }
+            }
         }
     }
+}
