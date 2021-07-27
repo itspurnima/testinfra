@@ -2,7 +2,7 @@ List<String> CHOICES = [];
 pipeline{
     agent any
     stages{
-        echo "in dev env----------"
+        
         //stage('user input'){
         //    steps{
            //     script{
@@ -15,6 +15,7 @@ pipeline{
         stage('scm checkout'){
             when { branch 'InfraAws' }
             steps{
+                echo "in dev env----------"
                 script{
                    currentBuild.displayName="Infra"
                    bat 'STAGE_NAME=test'
@@ -26,7 +27,7 @@ pipeline{
         stage('terraform init and plan'){
             steps{
                 echo "tf init and plan"
-                withAWS(credentials: 'jenkin-test-user', region: 'us-east-1') {
+                withAWS(credentials: 'jenkin-test-user', region: 'us-west-1') {
                 bat 'terraform init'
                 bat 'terraform plan'
                 bat 'terraform apply -input=false -auto-approve'
@@ -36,17 +37,18 @@ pipeline{
         stage('terraform destroy'){
             steps{
                 echo "tf destroy"
-                withAWS(credentials: 'jenkin-test-user', region: 'us-east-1') {
+                withAWS(credentials: 'jenkin-test-user', region: 'us-west-1') {
                 bat 'terraform destroy -auto-approve'
                 } 
             }
         }
     }
     stages{
-        echo "in test env----------"
+        
         stage('scm checkout'){
             when { branch 'dev' }
             steps{
+                echo "in test env----------"
                 script{
                    currentBuild.displayName="Infra"
                    bat 'STAGE_NAME=test'
