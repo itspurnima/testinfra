@@ -2,7 +2,7 @@ pipeline{
     agent any
     stages{
         stage('scm checkout'){
-            stepes{
+            steps{
             script{
                    currentBuild.displayName="php"
                 }
