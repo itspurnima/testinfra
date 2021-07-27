@@ -13,7 +13,7 @@ pipeline{
            }
         }
         stage('scm checkout'){
-            when { branch 'InfraAws' }
+           // when { branch 'InfraAws' }
             steps{
                 echo "in dev env----------"
                 script{
