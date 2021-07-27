@@ -19,7 +19,7 @@ pipeline{
                 steps{
                     withCredentials([string(credentialsId: 'Dockerhub', variable: 'Dockerhubpwd')]) {
                    bat "docker login -u purnimakalisetty -p ${Dockerhubpwd}" 
-                   bat 'docker push testapp'
+                   bat 'docker push purnimakalisetty/test_php:tagname'
                 }
             }
         }
