@@ -15,5 +15,15 @@ pipeline{
                 sh 'docker build -t sampletest .'
             }
             }
+        stage('push to hub'){
+                steps{
+                    
+                    withCredentials([string(credentialsId: 'Dockerhub', variable: 'Dockerhubpwd1')]) {
+                   bat "docker login -u purnimakalisetty -p ${Dockerhubpwd1}" 
+                  bat 'docker tag sampletest purnimakalisetty/test_php:firstimage'
+                   bat 'docker push purnimakalisetty/test_php:firstimage'
+                }
+            }
+        }
         }
     }
