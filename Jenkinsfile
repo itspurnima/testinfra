@@ -11,7 +11,9 @@ pipeline{
             }
         }
             stage('create docker image'){
+                steps{
                 sh 'docker build -t sampletest .'
+            }
             }
         }
     }
