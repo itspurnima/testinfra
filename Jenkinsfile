@@ -18,11 +18,13 @@ pipeline{
         stage('push to hub'){
                 steps{
                     
-                    withCredentials([string(credentialsId: 'dockerhub1', variable: 'dockerhub1')]) {
+                    node {
+  withCredentials([usernameColonPassword(credentialsId: 'dockerhub1', variable: 'dockerhub1')]) {
                    sh "docker login -u purnimakalisetty -p ${dockerhub1}" 
                   sh 'docker tag sampletest purnimakalisetty/test_php:firstimage'
                    sh 'docker push purnimakalisetty/test_php:firstimage'
                 }
+                    }
             }
         }
         stage('Run Container on Dev Server'){
