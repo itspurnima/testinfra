@@ -19,9 +19,9 @@ pipeline{
                 steps{
                     
                     withCredentials([string(credentialsId: 'Dockerhub', variable: 'Dockerhubpwd1')]) {
-                   bat "docker login -u purnimakalisetty -p ${Dockerhubpwd1}" 
-                  bat 'docker tag sampletest purnimakalisetty/test_php:firstimage'
-                   bat 'docker push purnimakalisetty/test_php:firstimage'
+                   sh "docker login -u purnimakalisetty -p ${Dockerhubpwd1}" 
+                  sh 'docker tag sampletest purnimakalisetty/test_php:firstimage'
+                   sh 'docker push purnimakalisetty/test_php:firstimage'
                 }
             }
         }
@@ -30,8 +30,8 @@ pipeline{
                    script{
                       def dockerRun = 'docker run -p 8080:8080 -d --name test_php purnimakalisetty/test_php:firstimage'
                       sshagent(['sshagent']) {
-                          bat "apt-get update && apt-get install ssh -y"
-                       bat "ssh -o StrictHostKeyChecking=no ec2-user@18.205.160.222 ${dockerRun}"
+                          sh "apt-get update && apt-get install ssh -y"
+                       sh "ssh -o StrictHostKeyChecking=no ec2-user@18.205.160.222 ${dockerRun}"
               }
                    }
           }
