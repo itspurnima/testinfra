@@ -19,7 +19,7 @@ pipeline{
                 steps{
                     
                     node {
-  withCredentials([usernameColonPassword(credentialsId: 'dockerhub1', variable: 'dockerhub1')]) {
+                    withCredentials([usernameColonPassword(credentialsId: 'dockerhub1', variable: 'dockerhub1')]) {
                    sh "docker login -u purnimakalisetty -p ${dockerhub1}" 
                   sh 'docker tag sampletest purnimakalisetty/test_php:firstimage'
                    sh 'docker push purnimakalisetty/test_php:firstimage'
