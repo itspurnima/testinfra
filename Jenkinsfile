@@ -18,7 +18,7 @@ pipeline{
         stage('push to hub'){
                 steps{
                     
-                    withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
+                    withCredentials([usernameColonPassword(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
                    sh "docker login -u purnimakalisetty -p ${dockerhub}" 
                   sh 'docker tag sampletest purnimakalisetty/test_php:firstimage'
                    sh 'docker push purnimakalisetty/test_php:firstimage'
