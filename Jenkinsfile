@@ -19,8 +19,8 @@ pipeline{
                 steps{
                     
                     
-                   withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-                   sh "docker login -u kalisetty.purnima@gmail.com -p ${dockerhub}" 
+                   withCredentials([string(credentialsId: 'dockerPwd', variable: 'dockerHubpwd')]) {
+                   sh "docker login -u purnimakalisetty -p ${dockerHubpwd}" 
                   sh 'docker tag sampletest purnimakalisetty/test_php:firstimage'
                    sh 'docker push purnimakalisetty/test_php:firstimage'
                 }
