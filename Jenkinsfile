@@ -31,7 +31,7 @@ pipeline{
                steps{
                    script{
                       def dockerRun = 'docker run -p 8080:8080 -d --name test_php purnimakalisetty/test_php:firstimage'
-                      sshagent(['sshagent']) {
+                      sshagent(['ec2-user']) {
                          
                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.164.104.222 ${dockerRun}"
               }
