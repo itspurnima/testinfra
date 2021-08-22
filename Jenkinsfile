@@ -19,7 +19,7 @@ pipeline{
                 steps{
                     
                     
-                   withCredentials([string(credentialsId: '', variable: 'docker')]) {
+                   withCredentials([string(credentialsId: 'docker', variable: 'docker')]) {
                    sh "docker login -u purnimakalisetty -p ${docker}" 
                   sh 'docker tag sampletest purnimakalisetty/test_php:firstimage'
                    sh 'docker push purnimakalisetty/test_php:firstimage'
