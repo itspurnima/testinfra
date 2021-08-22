@@ -33,7 +33,7 @@ pipeline{
                       def dockerRun = 'docker run -p 8080:8080 -d --name test_php purnimakalisetty/test_php:firstimage'
                       sshagent(['sshagent']) {
                           sh "apt-get update && apt-get install ssh -y"
-                       sh "ssh -o StrictHostKeyChecking=no ec2-user@18.205.160.222 ${dockerRun}"
+                       sh "ssh -o StrictHostKeyChecking=no ec2-user@54.164.104.222 ${dockerRun}"
               }
                    }
           }
