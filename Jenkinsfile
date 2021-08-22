@@ -30,7 +30,7 @@ pipeline{
         stage('Run Container on Dev Server'){
                steps{
                    script{
-                      def dockerRun = 'docker run -p 3000:3000 -d --name test_php purnimakalisetty/test_php:firstimage'
+                      def dockerRun = 'docker run -p 80:80 -d --name test_php purnimakalisetty/test_php:firstimage'
                       sshagent(['ec2-user']) {
                          
                        sh "ssh -o StrictHostKeyChecking=no ec2-user@54.164.104.222 ${dockerRun}"
