@@ -2,7 +2,7 @@ pipeline{
     agent any
     environment {
 		
-		DEV_IP = "3.86.244.76"
+		DEV_IP = "3.86.190.108"
 	}
     stages{
         stage('scm checkout'){
