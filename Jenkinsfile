@@ -30,6 +30,7 @@ pipeline{
         stage('Run Container on Dev Server'){
                steps{
                    script{
+                       sh returnStatus: true, script: 'ssh ec2-user@3.86.244.76 docker rm -f firstimage'
                       def dockerRun = 'docker run -p 80:80 -d --name test_php purnimakalisetty/test_php:firstimage'
                       sshagent(['ec2-user']) {
                          
