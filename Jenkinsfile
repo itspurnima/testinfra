@@ -1,7 +1,7 @@
 pipeline{
     agent any
     environment {
-		DOCKER_TAG = "${getLatestCommitId()}"
+		
 		DEV_IP = "3.86.244.76"
 	}
     stages{
