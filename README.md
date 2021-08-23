@@ -15,3 +15,17 @@ kubectl get pods
 for service
 kubectl get svs
 using the eternal ip we can access the application on browser.
+6.Check status of the current deployment
+kubectl rollout status deployment nodeapp
+Updating deployment
+For example we want to change number of replicas, change replicas in yaml and run following command
+
+kubectl apply -f deployment.yml  --record=true
+Kubernetes Deployment revisions
+Kubernetes maintains deployment state of all versions
+
+inorder to see deployment revision history
+
+kubectl rollout history deployment php
+Undo recent deployment
+kubectl rollout undo deployment php
