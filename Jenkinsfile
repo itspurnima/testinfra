@@ -37,7 +37,7 @@ pipeline{
             sshagent(['ec2-user']) {
           try{
                 def sshCmd = "ssh -o StrictHostKeyChecking=no ec2-user@${DEV_IP}"
-                 def dockerRM = 'docker rm -f firstimage'
+                 def dockerRM = 'docker rm -f /test_php'
                 sh "${sshCmd} ${dockerRM}"
             }catch(error){
 
