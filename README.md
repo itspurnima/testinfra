@@ -24,8 +24,4 @@ kubectl apply -f deployment.yml  --record=true
 Kubernetes Deployment revisions
 Kubernetes maintains deployment state of all versions
 
-inorder to see deployment revision history
 
-kubectl rollout history deployment php
-Undo recent deployment
-kubectl rollout undo deployment php
