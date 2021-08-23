@@ -39,21 +39,24 @@ pipeline{
                 def sshCmd = "ssh -o StrictHostKeyChecking=no ec2-user@${DEV_IP}"
                  def dockerRM = 'docker rm -f /test_php'
                 sh "${sshCmd} ${dockerRM}"
-            }catch(error){
-
-      }
+            }catch(error){}
 	    }
 			}
     }
   }
-        stage('Run Container on Dev Server'){
+        
+
+           stage('Deploy to k8s'){
                steps{
-                   script{
-                      
-                      def dockerRun = 'docker run -p 80:80 -d --name test_php purnimakalisetty/test_php:firstimage'
-                      sshagent(['ec2-user']) {
+                   sshagent(['kops-machine']) {
                          
-                          sh "ssh -o StrictHostKeyChecking=no ec2-user@${DEV_IP} ${dockerRun}"
+                          sh "ssh -o StrictHostKeyChecking=no deployment.yml ec2-user@${DEV_IP}:/home/ec2-user/"
+                   script{
+                       try{
+                           sh "ssh ec2-user@${DEV_IP} kubectl apply -f ."
+                       }catch(error){
+                          sh "ssh ec2-user@${DEV_IP} kubectl create -f ."  
+                       }                                        
               }
                    }
           }
