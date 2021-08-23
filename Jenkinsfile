@@ -21,8 +21,6 @@ pipeline{
             }
         stage('push to hub'){
                 steps{
-                    
-                    
                    withCredentials([string(credentialsId: 'dockerPwd', variable: 'dockerHubpwd')]) {
                    sh "docker login -u purnimakalisetty -p ${dockerHubpwd}" 
                   sh 'docker tag sampletest purnimakalisetty/test_php:firstimage'
@@ -42,11 +40,9 @@ pipeline{
             }catch(error){}
 	    }
 			}
-    }
-  }
-        
-
-           stage('Deploy to k8s'){
+           }
+       }
+         stage('Deploy to k8s'){
                steps{
                    sshagent(['kops-machine']) {
                          
