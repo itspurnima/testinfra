@@ -32,6 +32,8 @@ pipeline{
             }
         }
         stage('Remove Old Containers'){
+		steps{
+			script{
             sshagent(['ec2-user']) {
           try{
                 def sshCmd = "ssh -o StrictHostKeyChecking=no ec2-user@${DEV_IP}"
@@ -40,6 +42,8 @@ pipeline{
             }catch(error){
 
       }
+	    }
+			}
     }
   }
         stage('Run Container on Dev Server'){
